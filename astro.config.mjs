@@ -1,7 +1,10 @@
 import { defineConfig } from 'astro/config';
 
+import cloudflare from "@astrojs/cloudflare";
+
 export default defineConfig({
   site: 'https://jakubbialas.pages.dev',
+
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'pl'],
@@ -9,4 +12,7 @@ export default defineConfig({
       prefixDefaultLocale: false,
     },
   },
+
+  output: "hybrid",
+  adapter: cloudflare()
 });
