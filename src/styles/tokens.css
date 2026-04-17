@@ -1,10 +1,10 @@
 :root {
-  --bg-primary: #fafafa;
-  --bg-secondary: #f0f0f0;
-  --text-primary: #1a1a2e;
-  --text-muted: #555566;
-  --accent: #2563eb;
-  --border: #d4d4d8;
+  --bg-primary: #f2f5f8;
+  --bg-secondary: #e5eaef;
+  --text-primary: #0d1f35;
+  --text-muted: #4e6578;
+  --accent: #d97706;
+  --border: #c5d0da;
 
   --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
   --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
