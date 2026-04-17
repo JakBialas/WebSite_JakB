@@ -1,0 +1,59 @@
+---
+import LangSwitcher from './LangSwitcher.astro';
+import { t, type Locale } from '../i18n/utils';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const strings = t(locale);
+---
+<header class="site-header">
+  <div class="container nav">
+    <a class="brand mono" href={locale === 'en' ? '/' : '/pl'}>JB</a>
+    <nav>
+      <a href="#about">{strings.nav.about}</a>
+      <a href="#skills">{strings.nav.skills}</a>
+      <a href="#projects">{strings.nav.projects}</a>
+      <a href="#contact">{strings.nav.contact}</a>
+      <LangSwitcher locale={locale} />
+    </nav>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    background: color-mix(in srgb, var(--bg-primary) 85%, transparent);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
+  .brand {
+    font-weight: 600;
+    color: var(--text-primary);
+    letter-spacing: 0.1em;
+    text-decoration: none;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    gap: 1.5rem;
+  }
+  nav a {
+    color: var(--text-muted);
+    text-decoration: none;
+    font-size: var(--fs-small);
+  }
+  nav a:hover { color: var(--text-primary); text-decoration: none; }
+  @media (max-width: 560px) {
+    nav { gap: 0.9rem; }
+    nav a { font-size: 0.8rem; }
+  }
+</style>

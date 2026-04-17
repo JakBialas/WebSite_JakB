@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact"
+  },
+  "hero": {
+    "tagline": "Data Scientist with a background in bioinformatics — focused on medical data analysis, survival modeling, and ML.",
+    "intro": "Graduate in Data Science and Bioinformatics. Looking for my first role as a Data Analyst, Junior Data Scientist, or Bioinformatics Analyst.",
+    "cv": "Download CV",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "about": {
+    "heading": "About",
+    "body": "I hold a Master's in Data Science and a Bachelor's in Biotechnology (Bioinformatics) from the Silesian University of Technology. My work sits at the intersection of medical data and machine learning — survival analysis, clinical-trial data augmentation, and histopathology image analysis. I'm looking for a first full-time role where I can contribute to real analytics or ML work and keep learning."
+  },
+  "skills": {
+    "heading": "Skills",
+    "programming": "Programming",
+    "databases": "Databases",
+    "visualization": "Visualization",
+    "tools": "Tools",
+    "languages": "Languages"
+  },
+  "projects": {
+    "heading": "Projects",
+    "viewCode": "View code"
+  },
+  "contact": {
+    "heading": "Contact",
+    "location": "Chorzów, Poland",
+    "email": "Email"
+  },
+  "footer": {
+    "built": "Built with Astro, hosted on Cloudflare Pages."
+  }
+}

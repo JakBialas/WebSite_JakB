@@ -1,0 +1,20 @@
+:root {
+  --bg-primary: #0b0d10;
+  --bg-secondary: #14171c;
+  --text-primary: #e6e8eb;
+  --text-muted: #8b919a;
+  --accent: #7cc4ff;
+  --border: #23272e;
+
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, 'SF Mono', Menlo, monospace;
+
+  --fs-hero: clamp(2.5rem, 5vw, 4rem);
+  --fs-h2: 2rem;
+  --fs-body: 1rem;
+  --fs-small: 0.875rem;
+
+  --space-section: clamp(3rem, 8vw, 6rem);
+  --content-max: 880px;
+  --radius: 10px;
+}

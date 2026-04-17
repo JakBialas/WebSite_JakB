@@ -1,0 +1,34 @@
+---
+import { t, type Locale } from '../i18n/utils';
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const s = t(locale).contact;
+const cvHref = locale === 'en' ? '/cv/jakub-bialas-cv-en.pdf' : '/cv/jakub-bialas-cv-pl.pdf';
+---
+<section id="contact">
+  <div class="container">
+    <h2>{s.heading}</h2>
+    <ul class="links">
+      <li><span class="label">{s.email}:</span> <a href="mailto:qba.bialas@gmail.com">qba.bialas@gmail.com</a></li>
+      <li><span class="label">LinkedIn:</span> <a href="https://www.linkedin.com/in/jakubbialas/" target="_blank" rel="noopener">linkedin.com/in/jakubbialas</a></li>
+      <li><span class="label">GitHub:</span> <a href="https://github.com/JakBialas" target="_blank" rel="noopener">github.com/JakBialas</a></li>
+      <li class="muted">{s.location}</li>
+    </ul>
+    <a class="cv-btn" href={cvHref} download>{t(locale).hero.cv}</a>
+  </div>
+</section>
+
+<style>
+  ul.links { list-style: none; padding: 0; margin: 0 0 1.5rem; display: grid; gap: 0.5rem; }
+  .label { color: var(--text-muted); font-family: var(--font-mono); font-size: 0.85rem; margin-right: 0.5rem; }
+  .cv-btn {
+    display: inline-block;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid var(--accent);
+    border-radius: var(--radius);
+    color: var(--accent);
+    font-size: var(--fs-small);
+    text-decoration: none;
+  }
+  .cv-btn:hover { background: var(--accent); color: var(--bg-primary); text-decoration: none; }
+</style>

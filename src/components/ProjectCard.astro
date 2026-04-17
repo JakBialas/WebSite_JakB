@@ -1,0 +1,53 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import { t, type Locale } from '../i18n/utils';
+
+interface Props { project: CollectionEntry<'projects'>; locale: Locale; }
+const { project, locale } = Astro.props;
+const { title, summary, tech, github, role, highlights } = project.data;
+const viewCode = t(locale).projects.viewCode;
+---
+<article class="card">
+  <header class="card-head">
+    <h3>{title}</h3>
+    <span class="role mono muted">{role}</span>
+  </header>
+  <p class="summary">{summary}</p>
+  {highlights.length > 0 && (
+    <ul class="highlights">
+      {highlights.map((h) => <li>{h}</li>)}
+    </ul>
+  )}
+  <ul class="tags">
+    {tech.map((tag) => <li class="mono">{tag}</li>)}
+  </ul>
+  <a class="link" href={github} target="_blank" rel="noopener">{viewCode} →</a>
+</article>
+
+<style>
+  .card {
+    background: var(--bg-secondary);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    transition: border-color .15s ease, transform .15s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .card:hover { border-color: var(--accent); transform: translateY(-2px); }
+  .card-head { display: flex; align-items: baseline; justify-content: space-between; gap: 1rem; }
+  h3 { margin: 0; font-size: 1.15rem; }
+  .role { font-size: 0.75rem; white-space: nowrap; }
+  .summary { margin: 0; color: var(--text-primary); }
+  .highlights { margin: 0; padding-left: 1.1rem; color: var(--text-muted); font-size: 0.9rem; display: grid; gap: 0.25rem; }
+  .tags { list-style: none; padding: 0; margin: 0; display: flex; flex-wrap: wrap; gap: 0.4rem; }
+  .tags li {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.55rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--text-muted);
+  }
+  .link { color: var(--accent); font-size: var(--fs-small); align-self: flex-start; }
+</style>

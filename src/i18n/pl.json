@@ -1,0 +1,39 @@
+{
+  "nav": {
+    "about": "O mnie",
+    "skills": "Umiejętności",
+    "projects": "Projekty",
+    "contact": "Kontakt"
+  },
+  "hero": {
+    "tagline": "Data Scientist z zapleczem w bioinformatyce — analiza danych medycznych, modele przeżycia i ML.",
+    "intro": "Absolwent Data Science i bioinformatyki. Szukam pierwszej pracy jako Data Analyst, Junior Data Scientist lub Bioinformatics Analyst.",
+    "cv": "Pobierz CV",
+    "github": "GitHub",
+    "linkedin": "LinkedIn"
+  },
+  "about": {
+    "heading": "O mnie",
+    "body": "Skończyłem studia magisterskie z Data Science i inżynierskie z biotechnologii (bioinformatyka) na Politechnice Śląskiej. Zajmuję się analizą danych medycznych i uczeniem maszynowym — survival analysis, augmentacją danych klinicznych i analizą obrazów histopatologicznych. Szukam pierwszej pełnoetatowej pracy, w której mogę realnie wejść w analitykę/ML i się uczyć."
+  },
+  "skills": {
+    "heading": "Umiejętności",
+    "programming": "Programowanie",
+    "databases": "Bazy danych",
+    "visualization": "Wizualizacja",
+    "tools": "Narzędzia",
+    "languages": "Języki"
+  },
+  "projects": {
+    "heading": "Projekty",
+    "viewCode": "Zobacz kod"
+  },
+  "contact": {
+    "heading": "Kontakt",
+    "location": "Chorzów, Polska",
+    "email": "Email"
+  },
+  "footer": {
+    "built": "Zbudowane w Astro, hostowane na Cloudflare Pages."
+  }
+}

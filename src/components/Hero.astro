@@ -1,0 +1,43 @@
+---
+import { t, type Locale } from '../i18n/utils';
+
+interface Props { locale: Locale; }
+const { locale } = Astro.props;
+const s = t(locale).hero;
+const cvHref = locale === 'en' ? '/cv/jakub-bialas-cv-en.pdf' : '/cv/jakub-bialas-cv-pl.pdf';
+---
+<section class="hero">
+  <div class="container">
+    <p class="eyebrow mono">Data Scientist · Bioinformatics</p>
+    <h1>Jakub Białas</h1>
+    <p class="tagline">{s.tagline}</p>
+    <p class="intro muted">{s.intro}</p>
+    <div class="ctas">
+      <a class="btn primary" href={cvHref} download>{s.cv}</a>
+      <a class="btn" href="https://github.com/JakBialas" target="_blank" rel="noopener">{s.github}</a>
+      <a class="btn" href="https://www.linkedin.com/in/jakubbialas/" target="_blank" rel="noopener">{s.linkedin}</a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero { padding-top: calc(var(--space-section) * 0.8); }
+  .eyebrow { color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.75rem; margin: 0 0 1rem; }
+  h1 { font-size: var(--fs-hero); font-weight: 700; margin: 0 0 1rem; }
+  .tagline { font-size: 1.25rem; max-width: 42rem; margin: 0 0 1rem; }
+  .intro { max-width: 42rem; margin: 0 0 2rem; }
+  .ctas { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+  .btn {
+    display: inline-flex; align-items: center;
+    padding: 0.6rem 1.1rem;
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-size: var(--fs-small);
+    text-decoration: none;
+    transition: border-color .15s ease, color .15s ease;
+  }
+  .btn:hover { border-color: var(--accent); color: var(--accent); text-decoration: none; }
+  .btn.primary { background: var(--accent); color: var(--bg-primary); border-color: var(--accent); font-weight: 600; }
+  .btn.primary:hover { color: var(--bg-primary); filter: brightness(1.1); }
+</style>

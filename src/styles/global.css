@@ -1,0 +1,35 @@
+@import './tokens.css';
+
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-family: var(--font-sans);
+  font-size: var(--fs-body);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+a { color: var(--accent); text-decoration: none; }
+a:hover { text-decoration: underline; }
+
+h1, h2, h3 { line-height: 1.2; margin: 0 0 0.5em; }
+h2 { font-size: var(--fs-h2); }
+
+code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
+
+.container {
+  max-width: var(--content-max);
+  margin: 0 auto;
+  padding: 0 1.25rem;
+}
+
+section { padding: var(--space-section) 0; }
+
+.muted { color: var(--text-muted); }
