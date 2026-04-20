@@ -4,7 +4,7 @@ interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const s = t(locale).about;
 ---
-<section id="about">
+<section id="about" data-aos="fade-right">
   <div class="container">
     <h2>{s.heading}</h2>
     <p>{s.body}</p>
