@@ -30,19 +30,23 @@ const { title, description, lang } = Astro.props;
       let scrolling = false;
       let scrollTimer: ReturnType<typeof setTimeout>;
 
-      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', () => {
-          scrolling = true;
-          clearTimeout(scrollTimer);
-          scrollTimer = setTimeout(() => {
-            scrolling = false;
-            document.querySelectorAll('[data-aos]').forEach(el => {
-              observer.unobserve(el);
-              observer.observe(el);
-            });
-          }, 900);
+      const reEvaluate = () => {
+        scrolling = false;
+        document.querySelectorAll('[data-aos]').forEach(el => {
+          observer.unobserve(el);
+          observer.observe(el);
         });
+      };
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', () => { scrolling = true; });
       });
+
+      window.addEventListener('scroll', () => {
+        if (!scrolling) return;
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(reEvaluate, 100);
+      }, { passive: true });
 
       const observer = new IntersectionObserver((entries) => {
         if (scrolling) return;
