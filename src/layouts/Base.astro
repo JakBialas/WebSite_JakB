@@ -34,7 +34,13 @@ const { title, description, lang } = Astro.props;
         anchor.addEventListener('click', () => {
           scrolling = true;
           clearTimeout(scrollTimer);
-          scrollTimer = setTimeout(() => { scrolling = false; }, 900);
+          scrollTimer = setTimeout(() => {
+            scrolling = false;
+            document.querySelectorAll('[data-aos]').forEach(el => {
+              observer.unobserve(el);
+              observer.observe(el);
+            });
+          }, 900);
         });
       });
 
