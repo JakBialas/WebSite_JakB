@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import 'aos/dist/aos.css';
 
 interface Props {
   title: string;
@@ -26,5 +27,13 @@ const { title, description, lang } = Astro.props;
   </head>
   <body>
     <slot />
+    <script>
+      import AOS from 'aos';
+      AOS.init({
+        duration: 600,
+        offset: 100,
+        once: true,
+      });
+    </script>
   </body>
 </html>
