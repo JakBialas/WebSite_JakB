@@ -27,7 +27,19 @@ const { title, description, lang } = Astro.props;
   <body>
     <slot />
     <script>
+      let scrolling = false;
+      let scrollTimer: ReturnType<typeof setTimeout>;
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', () => {
+          scrolling = true;
+          clearTimeout(scrollTimer);
+          scrollTimer = setTimeout(() => { scrolling = false; }, 900);
+        });
+      });
+
       const observer = new IntersectionObserver((entries) => {
+        if (scrolling) return;
         entries.forEach(entry => {
           const el = entry.target as HTMLElement;
           const delay = el.getAttribute('data-aos-delay') ?? '0';
