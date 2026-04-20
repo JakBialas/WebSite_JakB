@@ -11,7 +11,7 @@ const { project, locale, index } = Astro.props;
 const { title, summary, tech, github, role, highlights } = project.data;
 const viewCode = t(locale).projects.viewCode;
 ---
-<article class="card" data-aos="fade-left" data-aos-delay={index * 100}>
+<article class="card" data-aos="fade-right" data-aos-delay={index * 100}>
   <header class="card-head">
     <h3>{title}</h3>
     <span class="role mono muted">{role}</span>
