@@ -33,3 +33,18 @@ code, .mono { font-family: var(--font-mono); font-size: 0.9em; }
 section { padding: var(--space-section) 0; }
 
 .muted { color: var(--text-muted); }
+
+[data-aos="fade-right"] {
+  opacity: 0;
+  transform: translateX(-60px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-aos="fade-left"] {
+  opacity: 0;
+  transform: translateX(60px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+[data-aos].aos-visible {
+  opacity: 1;
+  transform: translateX(0);
+}

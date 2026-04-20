@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import 'aos/dist/aos.css';
 
 interface Props {
   title: string;
@@ -28,13 +27,21 @@ const { title, description, lang } = Astro.props;
   <body>
     <slot />
     <script>
-      import AOS from 'aos';
-      AOS.init({
-        duration: 600,
-        offset: 100,
-        once: false,
-        mirror: true,
-      });
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const el = entry.target as HTMLElement;
+          const delay = el.getAttribute('data-aos-delay') ?? '0';
+          if (entry.isIntersecting) {
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add('aos-visible');
+          } else {
+            el.style.transitionDelay = '0ms';
+            el.classList.remove('aos-visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
     </script>
   </body>
 </html>
