@@ -12,3 +12,6 @@ dist
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# thesis reference PDFs (kept locally for content fact-check)
+RAU-*.pdf
