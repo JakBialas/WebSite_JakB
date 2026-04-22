@@ -26,5 +26,34 @@ const { title, description, lang } = Astro.props;
   </head>
   <body>
     <slot />
+    <script>
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const el = entry.target as HTMLElement;
+          const delay = el.getAttribute('data-aos-delay') ?? '0';
+          if (entry.isIntersecting) {
+            el.style.transitionDelay = `${delay}ms`;
+            el.classList.add('aos-visible');
+          } else {
+            el.style.transitionDelay = '0ms';
+            el.classList.remove('aos-visible');
+          }
+        });
+      }, { threshold: 0.15 });
+
+      document.querySelectorAll('[data-aos]').forEach(el => observer.observe(el));
+
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', () => {
+          const id = (anchor as HTMLAnchorElement).getAttribute('href')!.slice(1);
+          const target = document.getElementById(id);
+          if (!target) return;
+          target.querySelectorAll<HTMLElement>('[data-aos]').forEach(el => {
+            el.style.transitionDelay = '0ms';
+            el.classList.add('aos-visible');
+          });
+        });
+      });
+    </script>
   </body>
 </html>
