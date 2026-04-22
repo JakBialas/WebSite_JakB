@@ -1,15 +1,15 @@
 ---
-title: "GLCM — prognostyka nowotworowa z obrazów histopatologicznych"
+title: "GLCM dla map limfocytów — prognostyka nowotworowa"
 locale: pl
 date: 2024-01
 role: "Praca inżynierska"
-tech: ["Python", "przetwarzanie obrazów", "GLCM", "model Coxa"]
-github: "https://github.com/JakBialas"
+tech: ["MATLAB", "przetwarzanie obrazów", "GLCM", "model Coxa"]
+github: "https://github.com/JakBialas/Engineering-Thesis"
 featured: true
 order: 2
-summary: "Analiza obrazów histopatologicznych oparta na GLCM do prognostyki nowotworowej, z dostrojonym preprocessingiem i ewaluacją modelem Coxa."
+summary: "Analiza heterogeniczności przestrzennej map limfocytów naciekających guz (TIL) oparta na GLCM, z dostrojonym preprocessingiem i ewaluacją modelem Coxa dla różnych typów raka."
 highlights:
   - "Pipeline preprocessingu: filtracja, operacje morfologiczne, usunięcie tła, kalibracja skali szarości"
   - "Ewaluacja: model Coxa, C-index Harrella, p-value"
-  - "C-index wzrósł z 0.72 → 0.91 po dostrojeniu parametrów"
+  - "Najlepszy przypadek: C-index 0.72 → 0.91 dla miary M2 (regiony wysokiej intensywności); wyniki różniły się między typami raka"
 ---
