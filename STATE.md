@@ -5,6 +5,7 @@ _Ostatnia aktualizacja: 2026-04-22_
 ## Gałąź aktywna
 `master` — CF Workers buduje automatycznie z master.
 Feature branch `layout-animations` nadal istnieje (lokalnie i na origin) — zachowany do dalszych eksperymentów z animacjami.
+Feature branch `portfolio-factcheck` (lokalnie i na origin) — zawiera poprawki opisów projektów wg PDFów prac dyplomowych; **nie zmergowany** do mastera (decyzja usera: trzymać osobno).
 
 ## Stan deploymentu
 - Cloudflare Workers aktywny; URL produkcyjny: `https://jakubbialas.pages.dev`
@@ -20,21 +21,25 @@ Feature branch `layout-animations` nadal istnieje (lokalnie i na origin) — zac
 ## Otwarte sprawy / dług techniczny
 - Typo w `.env`: `REPO_USER=qba.bialas@gmial.com` (brak 'a' w gmail) — nie wpływa na działanie
 - `site` w `astro.config.mjs` wskazuje na `jakubbialas.pages.dev` — jeśli domena się zmieni, wymaga aktualizacji
-- W katalogu projektu leży nietracked plik `RAU-MGR-295996-2025.pdf` (prawdopodobnie praca magisterska — do użycia w fact-checku poniżej)
+- Branch `portfolio-factcheck` czeka na decyzję o mergu/PR (zob. niżej)
 
-## Planowane prace — fact-check opisów projektów w portfolio
+## Wykonane prace — fact-check opisów projektów (branch `portfolio-factcheck`)
 
-**Kontekst:** Strona w `src/content/projects/{cox-smote,glcm-histopath}.{en,pl}.md` opisuje dwie prace dyplomowe. Porównanie z README repo `JakBialas/Master-Thesis` (R) i `JakBialas/Engineering-Thesis` (MATLAB) wykazało rozbieżności.
+**Źródła weryfikacji:** pełne PDFy prac dyplomowych — `RAU-MGR-295996-2025.pdf` (magisterska, 92 str.) i `RAU-INZ-295996-2024.pdf` (inżynierska, 58 str.). PDFy trzymane lokalnie, gitignorowane przez wzorzec `RAU-*.pdf`.
 
-**Znalezione błędy (do naprawy — nie wymagają dodatkowej weryfikacji):**
-1. `cox-smote.{en,pl}.md` → pole `tech`: wpisane `Python` i `scikit-learn`, a repo jest w czystym R (pakiet `smotefamily`, nie scikit-learn). Poprawić na: R, SMOTE, Cox model (+ ew. `smotefamily`, `survRM2`).
-2. `glcm-histopath.{en,pl}.md` → pole `tech`: wpisane `Python`, a repo jest w MATLAB. Zamienić `Python` → `MATLAB`.
-3. `github:` w obu plikach wskazuje na profil (`github.com/JakBialas`) zamiast konkretnych repo — zmienić na `/Master-Thesis` i `/Engineering-Thesis`.
+**Wprowadzone poprawki** (commit `d0e6ae0` — `fix: align project descriptions with thesis content`):
 
-**Do weryfikacji z pełnymi PDFami prac (user ma dostarczyć — może to być `RAU-MGR-295996-2025.pdf`):**
-4. „8 metod" w Cox-SMOTE — README ma 7 głównych + warianty `2Ev`. Sprawdzić w pracy jaka liczba jest „kanoniczna".
-5. „10 repetitions per scenario" — nie ma w README. Sprawdzić czy jest w pracy / w kodzie.
-6. „C-index improved from 0.72 → 0.91 with tuned parameters" (GLCM) — nie weryfikowalne z README. Sprawdzić w pracy inżynierskiej.
-7. Ogólnie: czy w pracach są inne warte wyróżnienia wyniki, których nie ma na stronie.
+`cox-smote.{en,pl}.md`:
+- `tech`: `Python`/`scikit-learn` → `R`/`SMOTE`/`Cox model`/`survival analysis` (praca w czystym R)
+- `summary`/`highlights`: 8 → 9 metod (TOC sek. 2.6 wymienia 9: log-normal, bootstrap, bootstrap+log-normal, SMOTE, multi-event SMOTE, Cox, Cox-SMOTE, multi-event Cox-SMOTE, hybrid two-Cox-SMOTE)
+- `summary`: dodano kontekst datasetu (breast cancer, I-SPY trial)
+- `github`: profil → `/Master-Thesis`
+- Claim „10 repetitions per scenario" zweryfikowany (str. 23 pracy) — bez zmian
 
-**Stan po restarcie sesji:** wznowić od kroku 4 — zapytać usera o PDFy (albo użyć `RAU-MGR-295996-2025.pdf` jeśli to właśnie praca magisterska), zweryfikować claims 4-7, potem zastosować wszystkie poprawki (1-3 + ewentualne wynikające z 4-7). Commit każdej sekcji osobno lub razem — do ustalenia z userem. **Bez co-author trailerów.**
+`glcm-histopath.{en,pl}.md`:
+- `tech`: `Python` → `MATLAB`
+- `title`/`summary`: dodano że chodzi o **mapy limfocytów (TIL)** i **heterogeniczność przestrzenną** (zgodnie z tytułem pracy: „Modyfikacja i rozszerzenie algorytmów do oszacowania przestrzennej heterogeniczności map limfocytów…")
+- C-index claim doprecyzowany: 0.72 → 0.91 to **najlepszy przypadek dla miary M2** (regiony wysokiej intensywności), nie poprawa uniwersalna; wyniki różniły się między typami raka
+- `github`: profil → `/Engineering-Thesis`
+
+**Status:** branch zapushowany na origin, czeka na decyzję merge (CF Workers buduje tylko z mastera, więc treść na produkcji bez zmian).
