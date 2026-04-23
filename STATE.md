@@ -1,26 +1,30 @@
 # STATE.md — aktualny stan repo (aktualizować przy większych zmianach)
 
-_Ostatnia aktualizacja: 2026-04-22 (sesja: fact-check + diagnoza CF)_
+_Ostatnia aktualizacja: 2026-04-23 (sesja: footer version bump + rozwiązanie zagadki CF)_
 
 ## Gałęzie
 
 | Branch | HEAD | Cel / status |
 |--------|------|--------------|
-| `master` | `9243b38` | Domyślna gałąź, według CLAUDE.md production branch dla CF — **ale obserwacja z sesji sugeruje że to nieprawda** (zob. „Otwarte sprawy") |
-| `layout-test` | `05d857c` | Po cherry-picku fact-checku (`05d857c` = `fix: align project descriptions with thesis content` na bazie `de08d10`). **Prawdopodobnie faktyczny production branch CF** |
-| `layout-animations` | bez zmian | Zachowany do dalszych eksperymentów z animacjami (już zmergowany do mastera w `99f4391`) |
-| `portfolio-factcheck` | `93b2334` | Świeży branch z mastera z 3 commitami fact-checku + .gitignore + STATE.md update. Trzymany osobno na życzenie usera |
+| `master` | `58f5c9a` | Domyślna gałąź. Production branch CF (potwierdzone 2026-04-23 — zob. „Stan deploymentu") |
+| `layout-test` | `c346de8` | Po cherry-picku fact-checku + bump tagu wersji. Zachowany jako alternatywny branch eksperymentalny |
+| `layout-animations` | `b70becb` | Zachowany do dalszych eksperymentów z animacjami (feature zmergowany do mastera w `99f4391`) |
+| `portfolio-factcheck` | `323a6b6` | Świeży branch z mastera z 3 commitami fact-checku + .gitignore + STATE.md update. Trzymany osobno na życzenie usera |
 
 ## Stan deploymentu
 
 - URL produkcyjny: `https://jakubbialas.pages.dev`
-- **Niejasność:** CLAUDE.md mówi że CF Workers buduje z mastera, ale w sesji 2026-04-22 user zaobserwował że strona produkcyjna pokazuje treść z `layout-test` (palety/style z eksperymentów). To sugeruje że CF jest faktycznie skonfigurowany na `layout-test` jako production branch.
-- Po sesji push na `layout-test` (commit `05d857c` z fact-checkiem) — jeśli CF rzeczywiście stamtąd buduje, opisy projektów (R/MATLAB, 9 metod, linki do /Master-Thesis i /Engineering-Thesis) powinny pojawić się na produkcji w ciągu kilku minut.
+- **Rozwiązane 2026-04-23:** wcześniejsza „niejasność CF" wynikała z gotchy w Cloudflare Workers — samo przepięcie production branch w dashboardzie **nie triggeruje deploya**. Wymagany jest push na nowo skonfigurowaną gałąź, żeby CF faktycznie przebudował site. Po bumpie tagu wersji (`v2026-04-17` → `v2026-04-23`) i pushu na wszystkie cztery gałęzie produkcja się odświeżyła — nowa data widoczna na `jakubbialas.pages.dev`. CLAUDE.md (master jako production branch) jest poprawny.
+- Konsekwencja: przy każdej przyszłej zmianie production branch w CF dashboard zawsze zrobić nowy push (np. pusty commit) na nowo wybraną gałąź.
 
 ## Ostatnie zmiany na masterze
 
 | Commit   | Opis |
 |----------|------|
+| `58f5c9a` | chore: gitignore thesis reference PDFs (cherry-pick z portfolio-factcheck `3ed09e4`) |
+| `84769fe` | fix: align project descriptions with thesis content (cherry-pick z portfolio-factcheck `d0e6ae0`) |
+| `14e7f32` | chore: bump footer version tag to 2026-04-23 |
+| `03c73c7` | docs: record session 2026-04-22 — fact-check completed and CF production-branch ambiguity |
 | `9243b38` | docs: update STATE.md with layout-animations merge and portfolio fact-check plan |
 | `99f4391` | Merge branch 'layout-animations': scroll and section animations (--no-ff, 18 commitów feature'a) |
 | `5cf8c2d` | chore: add visible deploy tag to footer for CI/CD verification |
@@ -28,9 +32,6 @@ _Ostatnia aktualizacja: 2026-04-22 (sesja: fact-check + diagnoza CF)_
 
 ## Otwarte sprawy / dług techniczny
 
-- **Krytyczne:** zweryfikować w CF dashboard (Workers & Pages → projekt → Settings → Builds & deployments) jaki branch jest faktycznym **Production branch**. W zależności od wyniku:
-  - jeśli `layout-test` → poprawić CLAUDE.md (mówi błędnie o masterze) i rozważyć przeniesienie production branch na `master` żeby uporządkować workflow
-  - jeśli `master` → wyjaśnić skąd treść z `layout-test` na produkcji (stary cache/zatrzymany deployment?)
 - Typo w `.env`: `REPO_USER=qba.bialas@gmial.com` (brak 'a' w gmail) — nie wpływa na działanie
 - `site` w `astro.config.mjs` wskazuje na `jakubbialas.pages.dev` — jeśli domena się zmieni, wymaga aktualizacji
 - PAT w `.env` (`REPO_TOKEN`) nie ma uprawnień do GitHub Deployments/Checks API — nie da się weryfikować buildów CF z linii poleceń przez `gh`
@@ -65,3 +66,22 @@ W trakcie sesji błędnie założono (na podstawie CLAUDE.md) że `layout-test` 
 Branch został odtworzony z lokalnego reflog (commit `de08d10` był nadal dostępny) i zapushowany z powrotem na origin pod tym samym SHA — dla CF stan branchu się nie zmienił (bez rebuildu). Następnie cherry-picknięto na niego fact-check.
 
 **Lekcja:** zanim usuwa się branch — nawet jeśli wygląda jak „porzucony test" — sprawdzić CF dashboard skąd faktycznie odbywa się build. CLAUDE.md może być nieaktualne.
+
+## Sesja 2026-04-23 — bump tagu wersji + rozwiązanie zagadki CF
+
+Footer (`src/components/Footer.astro:10`) zawiera ręcznie utrzymywany tag wersji `v{YYYY-MM-DD}` w span z klasą `.deploy-tag`. User wybrał opcję ręcznego utrzymania (odrzucił propozycję automatyzacji przez `new Date()` w build-time) — data ma sygnalizować faktyczną aktualizację treści/kodu, nie rebuild.
+
+**Wykonane:** bump `v2026-04-17` → `v2026-04-23` na wszystkich czterech aktywnych gałęziach:
+
+| Branch | Commit |
+|--------|--------|
+| `master` | `14e7f32` |
+| `layout-test` | `c346de8` |
+| `layout-animations` | `b70becb` |
+| `portfolio-factcheck` | `323a6b6` |
+
+**Rozwiązanie zagadki CF production branch:** po pushu na wszystkie cztery gałęzie strona produkcyjna pokazała nową datę — CF zbudował ze swojej skonfigurowanej gałęzi (`master`, zgodnie z CLAUDE.md). Wcześniejsze wrażenie „CF buduje z layout-test" wynikało prawdopodobnie z faktu że user przepinał production branch w CF dashboardzie, ale **CF nie triggeruje rebuildu na samą zmianę configu** — potrzebny jest push na nowo skonfigurowaną gałąź.
+
+**Lekcja:** po każdej zmianie production branch w CF dashboard zrobić pusty commit + push (`git commit --allow-empty -m "trigger rebuild" && git push`) na nowo wybraną gałąź. Inaczej produkcja dalej serwuje stary build.
+
+**Cherry-pick fact-checku na mastera:** `d0e6ae0` (fact-check treści projektów) i `3ed09e4` (gitignore RAU-*.pdf) z `portfolio-factcheck` zostały cherry-pickowane na mastera jako `84769fe` i `58f5c9a`. Master ma teraz treść zgodną z pracami dyplomowymi (R/MATLAB, 9 metod, linki do `/Master-Thesis` i `/Engineering-Thesis`). STATE.md i footer bump z portfolio-factcheck pominięte — master miał już te zmiany (nowszy STATE.md + `14e7f32`). Branch `portfolio-factcheck` zostaje osobno per wcześniejsze życzenie usera.
