@@ -12,3 +12,9 @@ dist
 .dev.vars*
 !.dev.vars.example
 !.env.example
+
+# local-only notes and AI workflow (kept locally, not on GitHub)
+CLAUDE.md
+STATE.md
+docs/superpowers/
+public/cv/.gitkeep
