@@ -15,3 +15,9 @@ dist
 
 # thesis reference PDFs (kept locally for content fact-check)
 RAU-*.pdf
+
+# local-only notes and AI workflow (kept locally, not on GitHub)
+CLAUDE.md
+STATE.md
+docs/superpowers/
+public/cv/.gitkeep
