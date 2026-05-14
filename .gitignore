@@ -13,11 +13,5 @@ dist
 !.dev.vars.example
 !.env.example
 
-# thesis reference PDFs (kept locally for content fact-check)
+# thesis reference PDFs
 RAU-*.pdf
-
-# local-only notes and AI workflow (kept locally, not on GitHub)
-CLAUDE.md
-STATE.md
-docs/superpowers/
-public/cv/.gitkeep
