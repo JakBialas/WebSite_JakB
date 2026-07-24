@@ -4,10 +4,11 @@ interface Props { locale: Locale; }
 const { locale } = Astro.props;
 const s = t(locale).footer;
 const year = new Date().getFullYear();
+const deployTag = `v${new Date().toISOString().slice(0, 10)}`;
 ---
 <footer>
   <div class="container">
-    <p class="muted small">© {year} Jakub Białas · {s.built} · <span class="deploy-tag">v2026-07-24</span></p>
+    <p class="muted small">© {year} Jakub Białas · {s.built} · <span class="deploy-tag">{deployTag}</span></p>
   </div>
 </footer>
 

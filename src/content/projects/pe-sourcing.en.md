@@ -2,7 +2,7 @@
 title: "PE Sourcing Tool — automating private-equity firm research"
 locale: en
 date: 2026-07
-role: "Personal project / tool"
+role: "Portfolio project"
 tech: ["Python", "pandas", "SEC EDGAR / Form ADV", "local LLM (Ollama)", "Streamlit", "pytest"]
 github: "https://github.com/JakBialas/PE-Sourcing-Tool"
 featured: true
