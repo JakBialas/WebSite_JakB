@@ -2,7 +2,7 @@
 title: "PE Sourcing Tool — automatyzacja researchu funduszy PE"
 locale: pl
 date: 2026-07
-role: "Projekt portfolio"
+role: "Projekt portfolio / narzędzie"
 tech: ["Python", "pandas", "SEC EDGAR / Form ADV", "lokalny LLM (Ollama)", "Streamlit", "pytest"]
 github: "https://github.com/JakBialas/PE-Sourcing-Tool"
 featured: true
