@@ -6,7 +6,7 @@ role: "Portfolio project"
 tech: ["Python", "pandas", "scikit-learn", "XGBoost", "Jupyter"]
 github: "https://github.com/JakBialas/Student-Depression-Analysis"
 featured: true
-order: 4
+order: 5
 summary: "End-to-end machine-learning project predicting student depression (~28k records) from academic, lifestyle and demographic features — EDA, preprocessing, model comparison and interpretation. Best model ROC-AUC ≈ 0.92."
 highlights:
   - "End-to-end pipeline: EDA → preprocessing → modeling → evaluation, with reusable src/ modules and pytest smoke tests"

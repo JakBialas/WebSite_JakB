@@ -6,7 +6,7 @@ role: "Projekt portfolio"
 tech: ["Python", "pandas", "scikit-learn", "XGBoost", "Jupyter"]
 github: "https://github.com/JakBialas/Student-Depression-Analysis"
 featured: true
-order: 4
+order: 5
 summary: "Kompletny projekt ML przewidujący depresję studentów (~28 tys. rekordów) na podstawie cech akademickich, stylu życia i demograficznych — EDA, preprocessing, porównanie modeli i interpretacja. Najlepszy model ROC-AUC ≈ 0,92."
 highlights:
   - "Pełny pipeline: EDA → preprocessing → modelowanie → ewaluacja, z modułami w src/ i testami pytest"

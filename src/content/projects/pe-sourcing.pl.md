@@ -6,7 +6,7 @@ role: "Projekt portfolio"
 tech: ["Python", "pandas", "SEC EDGAR / Form ADV", "lokalny LLM (Ollama)", "Streamlit", "pytest"]
 github: "https://github.com/JakBialas/PE-Sourcing-Tool"
 featured: true
-order: 5
+order: 3
 summary: "Narzędzie w Pythonie, które filtruje publiczne dane SEC (Form ADV) do gotowej shortlisty funduszy private equity pasujących do zadanego profilu — od surowego rejestru ~17 tys. doradców do listy kandydatów z kontaktami i sygnałami zakupowymi. 650 testów, w pełni na darmowych, cytowalnych źródłach."
 highlights:
   - "Dwuetapowy pipeline: sito Form ADV (pasmo AUM, typ funduszu, PE-fit ze Schedule D) → klasyfikacja sektora/operacyjności ze stron firm (reguły + lokalny LLM)"

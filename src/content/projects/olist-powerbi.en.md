@@ -6,7 +6,7 @@ role: "Portfolio project"
 tech: ["Power BI", "DAX", "Power Query (M)", "data modeling", "Python"]
 github: "https://github.com/JakBialas/olist-powerbi-dashboard"
 featured: true
-order: 3
+order: 4
 summary: "Designed a 3-page Power BI dashboard on the Olist e-commerce marketplace (~100k orders): a star-schema data model, ~20 DAX measures, and three actionable business insights."
 highlights:
   - "Designed a star-schema data model (1 fact, 5 dimensions, date table) in Power Query"
